@@ -96,6 +96,6 @@ jobs:
             echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
             echo "SERVER_PORT=${{ secrets.DEV_SERVER_PORT }}" >> .env
 
-            docker-compose --env-file .env -f docker-compose.yml down -v
+            docker compose --env-file .env -f docker-compose.yml down -v
             docker image prune -f
-            docker-compose --env-file .env -f docker-compose.yml up -d --build
+            docker compose --env-file .env -f docker-compose.yml up -d --build
