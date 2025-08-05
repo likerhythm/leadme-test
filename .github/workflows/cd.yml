@@ -19,6 +19,9 @@ jobs:
       - name: 스프링 빌드 .jar 파일 생성
         run: ./gradlew clean build
 
+      - name: 빌드 산출물 확인
+        run: ls -alR **/build/libs || true   # 전 모듈 검색
+
       - name: Debug SSH Key
         run: echo "${{ secrets.DEV_SSH_KEY }}" | wc -l
 
