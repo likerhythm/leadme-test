@@ -75,8 +75,8 @@ jobs:
           username: ec2-user
           key: ${{ secrets.DEV_SSH_KEY }}
           source: |
-            Dockerfile
-            docker-compose.yml
+            ./Dockerfile
+            ./docker-compose.yml
           target: "~/app"
 
       - name: .env 값 주입후, docker-compose 실행
