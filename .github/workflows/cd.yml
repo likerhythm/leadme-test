@@ -13,6 +13,9 @@ jobs:
         with:
           ref: ${{ github.event.workflow_run.head_sha }}
 
+      - name: gradlew 실행 권한 부여 
+        run: chmod +x gradlew
+
       - name: 스프링 빌드 .jar 파일 생성
         run: ./gradlew clean build
 
