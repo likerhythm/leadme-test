@@ -18,6 +18,8 @@ jobs:
 
       - name: 스프링 빌드 .jar 파일 생성
         run: ./gradlew clean build
+              echo "=== build 디렉터리 구조 ==="
+              find . -type f -name "*.jar" -maxdepth 3
 
       - name: 빌드 산출물 확인
         run: ls -alR **/build/libs || true   # 전 모듈 검색
