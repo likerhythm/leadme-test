@@ -68,6 +68,9 @@ jobs:
           source: "build/libs/*.jar"
           target: "~/app/libs"
 
+      - name: 디버깅 - 현재 디렉토리 파일 목록 보기
+        run: ls -al
+
       - name: Dockerfile 및 docker-compose.yml EC2로 전송
         uses: appleboy/scp-action@v0.1.7
         with:
