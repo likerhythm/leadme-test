@@ -54,6 +54,9 @@ public class TestService {
 
             MetaInfo metaInfo = metaInfoRepository.findById(metaInfoId)
                     .orElseThrow(() -> new RuntimeException("잘못된 metaInfoId입니다."));
+            if (!metaInfo.isGenre()) {
+                continue;
+            }
             String name = metaInfo.getName();
             String rawVector = genreVectorHolder.getVector(name);
 

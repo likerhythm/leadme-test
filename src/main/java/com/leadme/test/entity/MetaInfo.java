@@ -28,4 +28,8 @@ public class MetaInfo {
 
     @ManyToMany(mappedBy = "metaInfos")
     private List<Content> contents;
+
+    public boolean isGenre() {
+        return type == MetaInfoType.GENRE;
+    }
 }
