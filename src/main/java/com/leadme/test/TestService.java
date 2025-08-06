@@ -97,7 +97,7 @@ public class TestService {
             String embedding = content.getEmbedding();
             if (embedding == null || embedding.isBlank()) continue;
 
-            List<Double> contentVector = Arrays.stream(embedding.split(","))
+            List<Double> contentVector = Arrays.stream(embedding.replace("[", "").replace("]", "").split(","))
                     .map(Double::parseDouble)
                     .toList();
 
