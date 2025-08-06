@@ -114,7 +114,7 @@ public class TestService {
     }
 
     private List<Double> stringToVector(String rawVector, double weight) {
-        return Arrays.stream(rawVector.split(","))
+        return Arrays.stream(rawVector.replace("[", "").replace("]", "").split(","))
                 .map(Double::parseDouble)
                 .map(v -> v * weight)
                 .toList();
