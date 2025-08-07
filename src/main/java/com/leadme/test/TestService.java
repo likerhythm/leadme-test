@@ -7,6 +7,7 @@ import jakarta.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,7 @@ public class TestService {
     private final UserWeightRepository userWeightRepository;
     private final MetaInfoRepository metaInfoRepository;
     private final GenreVectorHolder genreVectorHolder;
+    private final UserVectorRepository userVectorRepository;
 
     @Transactional
     public List<Double> processActionAndCalcVector(Long contentId) {
@@ -79,6 +81,13 @@ public class TestService {
             System.out.println("✅ 평균 벡터:");
             System.out.println(userVector);
 
+            StringBuilder sb = new StringBuilder();
+            for (Double v : userVector) {
+                sb.append(v + ", ");
+            }
+            userVectorRepository.save(UserVector.builder()
+                    .embedding(sb.toString())
+                    .build());
             return userVector;
         }
 
@@ -87,6 +96,7 @@ public class TestService {
 
     @Transactional
     public void processActionAndRecommend(Long contentId) {
+        Optional<UserVector> byId = userVectorRepository.findById(1L);
         List<Double> userVector = processActionAndCalcVector(contentId);
         List<Content> allContents = contentRepository.findAll();
 
